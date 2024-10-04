@@ -5,32 +5,41 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Vector2 inputDirection = Vector2.zero;
+    const float Gravity = -0.2f;
+    const float JumpForce = 20.0f;
 
-    public Controller1P controller;
+    float speed = 3.0f;
+    float currentSpeed = 0.0f;
+    Vector3 direction = Vector3.zero;
+
+    PlayerInput playerInput;
     Rigidbody rigid;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        controller = GetComponent<Controller1P>();
+        playerInput = GetComponent<PlayerInput>();
+
+        playerInput.onInput += OnMove;
     }
 
-    private void Start()
-    {
-        controller.onInput += OnMove;
-    }
 
     private void FixedUpdate()
     {
-        rigid.MovePosition(inputDirection * Time.fixedDeltaTime);
+        rigid.MovePosition(rigid.position + currentSpeed * direction * Time.fixedDeltaTime);
     }
 
     private void OnMove(Vector2 input, bool isPress)
     {
         if (isPress)
         {
-            inputDirection = input.normalized;
+            currentSpeed = speed;
+            direction.z = input.x;
+        }
+        else
+        {
+            currentSpeed = 0.0f;
+            direction = Vector3.zero;
         }
     }
 }
