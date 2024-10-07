@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     PlayerInputAction inputActions;
 
     public Action<Vector2, bool> onInput;
+    public Action<float> onJump;
 
     private void Awake()
     {
