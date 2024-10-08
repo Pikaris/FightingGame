@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    readonly int Walk_Hash = Animator.StringToHash("Speed");
+    readonly int Speed_Hash = Animator.StringToHash("Speed");
+    readonly int Back_Hash = Animator.StringToHash("Back");
+    
     const float Animator_Stop = 0.0f;
-    const float Animator_Walk = 0.5f;
+    const float Animator_Walk = 1.0f;
+    const float Animator_Run = 1.8f;
 
-    float speed = 3.0f;
     float currentSpeed = 0.0f;
     Vector3 direction = Vector3.zero;
 
@@ -25,13 +27,14 @@ public class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         playerInput.onInput += OnMove;
+        playerInput.onRun += OnRun;
     }
 
 
     private void FixedUpdate()
     {
         rigid.Move(rigid.position + currentSpeed * direction * Time.fixedDeltaTime, Quaternion.identity);
-        Debug.Log(currentSpeed);
+        //Debug.Log(currentSpeed);
     }
 
     private void OnMove(Vector2 input, bool isPress)
@@ -40,13 +43,28 @@ public class Player : MonoBehaviour
         {
             currentSpeed = Animator_Walk;
             direction.z = input.x;
-            animator.SetFloat(Walk_Hash, Animator_Walk);
+            animator.SetFloat(Speed_Hash, Animator_Walk);
+            if (direction.z < 0.0f)
+            {
+                animator.SetBool(Back_Hash, true);
+            }
+            else
+            {
+                animator.SetBool(Back_Hash, false);
+            }
         }
         else
         {
             currentSpeed = Animator_Stop;
             direction = Vector3.zero;
-            animator.SetFloat(Walk_Hash, Animator_Stop);
+            animator.SetFloat(Speed_Hash, Animator_Stop);
         }
+    }
+
+    private void OnRun(float input)
+    {
+        currentSpeed = Animator_Run;
+        direction.z = input;
+        animator.SetFloat(Speed_Hash, Animator_Run);
     }
 }
