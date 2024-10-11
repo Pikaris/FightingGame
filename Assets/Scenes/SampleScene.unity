@@ -565,7 +565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358998211504412373, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
       propertyPath: m_Name
-      value: unitychan
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6358998211504835317, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
       propertyPath: m_LocalPosition.x

@@ -26,8 +26,18 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
 
+    }
+
+    private void OnEnable()
+    {
         playerInput.onInput += OnMove;
         playerInput.onRun += OnRun;
+    }
+
+    private void OnDisable()
+    {
+        playerInput.onRun -= OnRun;
+        playerInput.onInput -= OnMove;
     }
 
 

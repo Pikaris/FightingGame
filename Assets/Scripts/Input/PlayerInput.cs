@@ -23,13 +23,13 @@ public class PlayerInput : MonoBehaviour
         inputActions.Player.Move.performed += OnMove;
         inputActions.Player.Move.canceled += OnMove;
         inputActions.Player.Dash.performed += OnRun;
-        inputActions.Player.Dash.canceled += OnRun;
+        //inputActions.Player.Dash.canceled += OnRun;
     }
 
 
     private void OnDisable()
     {
-        inputActions.Player.Dash.canceled -= OnRun;
+        //inputActions.Player.Dash.canceled -= OnRun;
         inputActions.Player.Dash.performed -= OnRun;
         inputActions.Player.Move.canceled -= OnMove;
         inputActions.Player.Move.performed -= OnMove;

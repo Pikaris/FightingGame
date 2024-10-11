@@ -42,7 +42,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""id"": ""d4ad740f-c3b7-46c4-849e-5e9474360a91"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""MultiTap(tapCount=3)"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -106,7 +106,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""3b05a460-621f-46c8-8716-5d1bba5a2f44"",
                     ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap(tapDelay=1.5)"",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Dash"",
@@ -117,7 +117,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""392ac866-4cbc-4efe-b423-88f43b839274"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
+                    ""interactions"": ""MultiTap(tapDelay=1.5)"",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Dash"",
