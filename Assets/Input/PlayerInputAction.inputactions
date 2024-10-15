@@ -16,8 +16,17 @@
                 },
                 {
                     "name": "Dash",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "d4ad740f-c3b7-46c4-849e-5e9474360a91",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LKick",
+                    "type": "Button",
+                    "id": "f0698c59-e77b-4230-b77d-eecc96846ddb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -83,8 +92,8 @@
                 {
                     "name": "",
                     "id": "3b05a460-621f-46c8-8716-5d1bba5a2f44",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "MultiTap(tapDelay=1.5)",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "MultiTap(pressPoint=1.401298E-45)",
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Dash",
@@ -94,11 +103,22 @@
                 {
                     "name": "",
                     "id": "392ac866-4cbc-4efe-b423-88f43b839274",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "MultiTap(tapDelay=1.5)",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "MultiTap(pressPoint=1.401298E-45)",
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ae8395d-79d4-456c-bac2-fdaac8c76aa3",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LKick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

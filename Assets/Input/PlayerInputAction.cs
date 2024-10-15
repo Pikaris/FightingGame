@@ -38,8 +38,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Dash"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""d4ad740f-c3b7-46c4-849e-5e9474360a91"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LKick"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0698c59-e77b-4230-b77d-eecc96846ddb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -105,8 +114,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3b05a460-621f-46c8-8716-5d1bba5a2f44"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": ""MultiTap(tapDelay=1.5)"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": ""MultiTap(pressPoint=1.401298E-45)"",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Dash"",
@@ -116,11 +125,22 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""392ac866-4cbc-4efe-b423-88f43b839274"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": ""MultiTap(tapDelay=1.5)"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": ""MultiTap(pressPoint=1.401298E-45)"",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ae8395d-79d4-456c-bac2-fdaac8c76aa3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LKick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -145,6 +165,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_LKick = m_Player.FindAction("LKick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -208,12 +229,14 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_LKick;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @LKick => m_Wrapper.m_Player_LKick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -229,6 +252,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @LKick.started += instance.OnLKick;
+            @LKick.performed += instance.OnLKick;
+            @LKick.canceled += instance.OnLKick;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -239,6 +265,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @LKick.started -= instance.OnLKick;
+            @LKick.performed -= instance.OnLKick;
+            @LKick.canceled -= instance.OnLKick;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -269,5 +298,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnLKick(InputAction.CallbackContext context);
     }
 }

@@ -8,9 +8,10 @@ public class PlayerInput : MonoBehaviour
 {
     PlayerInputAction inputActions;
 
-    public Action<Vector2, bool> onInput;
-    public Action<float> onRun;
-    public Action<float> onJump;
+    public event Action<Vector2, bool> onInput;
+    public event Action onRun;
+    public event Action<float> onJump;
+    public event Action onLKick;
 
     private void Awake()
     {
@@ -22,15 +23,17 @@ public class PlayerInput : MonoBehaviour
         inputActions.Player.Enable();
         inputActions.Player.Move.performed += OnMove;
         inputActions.Player.Move.canceled += OnMove;
-        inputActions.Player.Dash.performed += OnRun;
+        inputActions.Player.Dash.started += OnRun;
         //inputActions.Player.Dash.canceled += OnRun;
+        inputActions.Player.LKick.performed += OnLKick;
     }
 
 
     private void OnDisable()
     {
+        inputActions.Player.LKick.performed -= OnLKick;
         //inputActions.Player.Dash.canceled -= OnRun;
-        inputActions.Player.Dash.performed -= OnRun;
+        inputActions.Player.Dash.started -= OnRun;
         inputActions.Player.Move.canceled -= OnMove;
         inputActions.Player.Move.performed -= OnMove;
         inputActions.Player.Disable();
@@ -39,11 +42,14 @@ public class PlayerInput : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         onInput?.Invoke(context.ReadValue<Vector2>(), !context.canceled);
-        Debug.Log(!context.canceled);
+        Debug.Log("OnMove");
     }
     private void OnRun(InputAction.CallbackContext context)
     {
-        Debug.Log("Run");
-        onRun?.Invoke(context.ReadValue<float>());
+        onRun?.Invoke();
+    }
+    private void OnLKick(InputAction.CallbackContext context)
+    {
+        onLKick?.Invoke();
     }
 }

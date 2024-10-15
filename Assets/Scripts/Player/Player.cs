@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     readonly int Speed_Hash = Animator.StringToHash("Speed");
     readonly int Back_Hash = Animator.StringToHash("Back");
+    readonly int LKick_Hash = Animator.StringToHash("L_Kick");
     
     const float Animator_Stop = 0.0f;
     const float Animator_Walk = 1.0f;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     Animator animator;
     Rigidbody rigid;
 
+    public event Action onHitLKick;
 
     private void Awake()
     {
@@ -32,12 +34,14 @@ public class Player : MonoBehaviour
     {
         playerInput.onInput += OnMove;
         playerInput.onRun += OnRun;
+        playerInput.onLKick += OnLKick;
     }
+
 
     private void OnDisable()
     {
-        playerInput.onRun -= OnRun;
-        playerInput.onInput -= OnMove;
+        //playerInput.onRun -= OnRun;
+        //playerInput.onInput -= OnMove;
     }
 
 
@@ -54,6 +58,7 @@ public class Player : MonoBehaviour
             currentSpeed = Animator_Walk;
             direction.z = input.x;
             animator.SetFloat(Speed_Hash, Animator_Walk);
+            animator.ResetTrigger(LKick_Hash);
             if (direction.z < 0.0f)
             {
                 animator.SetBool(Back_Hash, true);
@@ -71,10 +76,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnRun(float input)
+    private void OnRun()
     {
         currentSpeed = Animator_Run;
-        direction.z = input;
         animator.SetFloat(Speed_Hash, Animator_Run);
+    }
+    private void OnLKick()
+    {
+        animator.SetTrigger(LKick_Hash);
+    }
+
+    private void HitLKick()
+    {
+        onHitLKick?.Invoke();
+    }
+
+    private void Hitted()
+    {
+
     }
 }
