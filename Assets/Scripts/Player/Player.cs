@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     PlayerInput playerInput;
     Animator animator;
     Rigidbody rigid;
+    LKick lKick;
 
     public event Action onHitLKick;
 
@@ -28,6 +29,12 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
 
+        Transform child = transform.GetChild(2);
+        lKick = child.GetComponent<LKick>();
+    }
+
+    private void Start()
+    {
     }
 
     private void OnEnable()
@@ -48,6 +55,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rigid.Move(rigid.position + currentSpeed * direction * Time.fixedDeltaTime, Quaternion.identity);
+        if()
         //Debug.Log(currentSpeed);
     }
 
@@ -86,13 +94,4 @@ public class Player : MonoBehaviour
         animator.SetTrigger(LKick_Hash);
     }
 
-    private void HitLKick()
-    {
-        onHitLKick?.Invoke();
-    }
-
-    private void Hitted()
-    {
-
-    }
 }
