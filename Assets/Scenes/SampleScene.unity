@@ -371,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358998211504835317, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: 1.019
       objectReference: {fileID: 0}
     - target: {fileID: 6358998211504835317, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2007,6 +2007,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1355467733579935096, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
+      propertyPath: m_TagString
+      value: Hurtbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5318812439917097387, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
+      propertyPath: m_TagString
+      value: HitBox
+      objectReference: {fileID: 0}
     - target: {fileID: 6358998211504412373, guid: 7a618cbfa82ff82498db073d91969bee, type: 3}
       propertyPath: m_Name
       value: Player

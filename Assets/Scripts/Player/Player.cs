@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     readonly int Speed_Hash = Animator.StringToHash("Speed");
     readonly int Back_Hash = Animator.StringToHash("Back");
     readonly int LKick_Hash = Animator.StringToHash("L_Kick");
+    readonly int Hitted_Hash = Animator.StringToHash("Hitted");
     
     const float Animator_Stop = 0.0f;
     const float Animator_Walk = 1.0f;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        lKick.onHitted += Hitted_Animation;
     }
 
     private void OnEnable()
@@ -55,9 +57,10 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rigid.Move(rigid.position + currentSpeed * direction * Time.fixedDeltaTime, Quaternion.identity);
-        if()
+        //if()
         //Debug.Log(currentSpeed);
     }
+
 
     private void OnMove(Vector2 input, bool isPress)
     {
@@ -94,4 +97,11 @@ public class Player : MonoBehaviour
         animator.SetTrigger(LKick_Hash);
     }
 
+    void Hitted_Animation(bool isHit = false)
+    {
+        if(isHit)
+        {
+            animator.SetTrigger(Hitted_Hash);
+        }
+    }
 }

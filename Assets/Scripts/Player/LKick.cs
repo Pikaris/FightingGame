@@ -8,7 +8,7 @@ public class LKick : MonoBehaviour
     BoxCollider LKick_boxCollider;
     BoxCollider LKickBody_boxCollider;
 
-    public event Action Hitted;
+    public event Action<bool> onHitted;
 
     private void Awake()
     {
@@ -18,6 +18,11 @@ public class LKick : MonoBehaviour
 
         child = transform.GetChild(1);
         LKickBody_boxCollider = child.GetComponent<BoxCollider>();
+    }
+
+    private void Start()
+    {
+        onHitted?.Invoke(false);
     }
 
     private void OnCollision_LKick()
@@ -32,9 +37,10 @@ public class LKick : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider == LKickBody_boxCollider)
+        if(collision.gameObject.CompareTag("Hitted"))
         {
-            Hitted?.Invoke();
+            Debug.Log("Hit");
+            onHitted?.Invoke(true);
         }
     }
 }
