@@ -20,9 +20,11 @@ public class Player : MonoBehaviour
     PlayerInput playerInput;
     Animator animator;
     Rigidbody rigid;
-    LKick lKick;
+    HurtBox hurtBox;
 
     public event Action onHitLKick;
+    public event Action onOnLKick;
+    public event Action onOffLKick;
 
     private void Awake()
     {
@@ -31,19 +33,20 @@ public class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         Transform child = transform.GetChild(2);
-        lKick = child.GetComponent<LKick>();
+        child = child.GetChild(1);
+        hurtBox = child.GetComponent<HurtBox>();
     }
 
     private void Start()
     {
-        lKick.onHitted += Hitted_Animation;
+        hurtBox.onHit += Hitted_Animation;
     }
 
     private void OnEnable()
     {
         playerInput.onInput += OnMove;
-        playerInput.onRun += OnRun;
-        playerInput.onLKick += OnLKick;
+        playerInput.onRun += OnRun_Animation;
+        playerInput.onLKick += OnLKick_Animation;
     }
 
 
@@ -87,21 +90,30 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnRun()
+    private void OnRun_Animation()
     {
         currentSpeed = Animator_Run;
         animator.SetFloat(Speed_Hash, Animator_Run);
     }
-    private void OnLKick()
+    private void OnLKick_Animation()
     {
         animator.SetTrigger(LKick_Hash);
     }
 
     void Hitted_Animation(bool isHit = false)
     {
-        if(isHit)
+        if (isHit)
         {
             animator.SetTrigger(Hitted_Hash);
         }
+    }
+
+    private void LKick_HitBox_On()
+    {
+        onOnLKick?.Invoke();
+    }
+    private void LKick_HitBox_Off()
+    {
+        onOffLKick?.Invoke();
     }
 }

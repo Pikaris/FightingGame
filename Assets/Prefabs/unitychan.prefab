@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2361803202855974330}
+  - component: {fileID: 951879396445611396}
   m_Layer: 0
   m_Name: LKick
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 3595613492024849488}
   m_Father: {fileID: 6358998211504835317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &951879396445611396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413241292146169688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4aa17e9eabc8534192dac2a1521215f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355467733579935096
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,11 +55,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3595613492024849488}
+  - component: {fileID: 4079946056197254542}
   - component: {fileID: 4839695085465307897}
   - component: {fileID: 6251271360589350930}
   m_Layer: 0
   m_Name: BodyCollider
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +80,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2361803202855974330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4079946056197254542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355467733579935096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8613f2949d2ba42a214e55283614c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4839695085465307897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,7 +107,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -102,7 +128,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -117,11 +143,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2514431782756518462}
+  - component: {fileID: 3865114831350074573}
   - component: {fileID: 3387274880016910956}
   - component: {fileID: 5500940665415809861}
   m_Layer: 0
   m_Name: LKickCollider
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +168,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2361803202855974330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &3865114831350074573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5318812439917097387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e87137e470ecb45bf3d7c1886d8415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &3387274880016910956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -156,7 +195,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -177,7 +216,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
