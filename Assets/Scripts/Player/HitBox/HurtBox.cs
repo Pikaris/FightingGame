@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HurtBox : MonoBehaviour
+public class HurtBox : CommandBase
 {
-    public event Action<bool> onHit;
+    public event Action<Vector3, bool> OnHit;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("HitBox"))
         {
             Debug.Log("Hit");
-            onHit?.Invoke(true);
+            OnHit?.Invoke(other.transform.position, true);
         }
     }
 }

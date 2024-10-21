@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        hurtBox.onHit += Hitted_Animation;
+        hurtBox.OnHit += Hitted_Animation;
     }
 
     private void OnEnable()
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         animator.SetTrigger(LKick_Hash);
     }
 
-    void Hitted_Animation(bool isHit = false)
+    void Hitted_Animation(Vector3 location, bool isHit = false)
     {
         if (isHit)
         {
