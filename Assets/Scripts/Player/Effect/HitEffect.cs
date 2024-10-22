@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitEffect : MonoBehaviour, IHit
+public class HitEffect : MonoBehaviour, IHitable
 {
     ParticleSystem hitEffect;
 
@@ -13,15 +13,13 @@ public class HitEffect : MonoBehaviour, IHit
         //IHit hit = GetComponent<IHit>();
         Transform child = transform.GetChild(0);
         hitEffect = child.GetComponent<ParticleSystem>();
+        //hitEffect.Stop();
     }
 
-    private void Start()
+    public void Hitted()
     {
-        //command = 
-    }
-
-    public void Hit()
-    {
-        hitEffect.Play();
+        Instantiate(hitEffect);
+        Debug.Log("IHit");
+        //hitEffect.Play();
     }
 }

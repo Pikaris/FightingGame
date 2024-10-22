@@ -75,7 +75,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 36662d1231b5989448d0aab45d810658, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_MirrorParameter: Back
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1101 &-7009539216065696699
@@ -129,7 +129,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 394aedbbbd8811d4e89e46481b65ddbc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_MirrorParameter: Back
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1101 &-5958482668853153854
@@ -273,7 +273,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   - m_Name: L_Kick
     m_Type: 9
@@ -376,7 +376,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 82bb860b0cda6b0428e0a990ec3e21e4, type: 2}
   m_Tag: 
   m_SpeedParameter: Speed
-  m_MirrorParameter: 
+  m_MirrorParameter: Back
   m_CycleOffsetParameter: 
   m_TimeParameter: Speed
 --- !u!1101 &1984065221855519443
@@ -454,7 +454,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: e46384a86fcb8b546a6f5b5c6b4c0d47, type: 2}
   m_Tag: 
   m_SpeedParameter: Speed
-  m_MirrorParameter: 
+  m_MirrorParameter: Back
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1102 &5028216612018404803
@@ -481,7 +481,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: e7c961a9de9103b48be18a4fcd8be5e8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_MirrorParameter: Back
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1102 &6331537869353901321

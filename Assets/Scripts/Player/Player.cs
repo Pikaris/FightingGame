@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IHitable
 {
     readonly int Speed_Hash = Animator.StringToHash("Speed");
     readonly int Back_Hash = Animator.StringToHash("Back");
@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
     HurtBox hurtBox;
 
     public event Action onHitLKick;
-    public event Action onOnLKick;
-    public event Action onOffLKick;
+    public event Action OnOnLKick;
+    public event Action OnOffLKick;
 
     private void Awake()
     {
@@ -32,14 +32,17 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
 
-        Transform child = transform.GetChild(2);
+        Transform child = transform.GetChild(3);
+        child = child.GetChild(0);
         child = child.GetChild(1);
         hurtBox = child.GetComponent<HurtBox>();
+
+
     }
 
     private void Start()
     {
-        hurtBox.OnHit += Hitted_Animation;
+        //hurtBox.OnHit += Hitted_Animation;
     }
 
     private void OnEnable()
@@ -100,9 +103,9 @@ public class Player : MonoBehaviour
         animator.SetTrigger(LKick_Hash);
     }
 
-    void Hitted_Animation(Vector3 location, bool isHit = false)
+    void Hitted_Animation()//Vector3 location, bool isHit = false)
     {
-        if (isHit)
+        //if (isHit)
         {
             animator.SetTrigger(Hitted_Hash);
         }
@@ -110,10 +113,15 @@ public class Player : MonoBehaviour
 
     private void LKick_HitBox_On()
     {
-        onOnLKick?.Invoke();
+        OnOnLKick?.Invoke();
     }
     private void LKick_HitBox_Off()
     {
-        onOffLKick?.Invoke();
+        OnOffLKick?.Invoke();
+    }
+
+    public void Hitted()
+    {
+        Hitted_Animation();
     }
 }

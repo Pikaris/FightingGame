@@ -24,8 +24,8 @@ public class LKick : MonoBehaviour
 
     private void Start()
     {
-        player.onOnLKick += OnCollision_LKick;
-        player.onOffLKick += OffCollision_LKick;
+        player.OnOnLKick += OnCollision_LKick;
+        player.OnOffLKick += OffCollision_LKick;
     }
 
     private void OnCollision_LKick()

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public interface IHit
+public interface IHitable
 {
-    void Hit();
+    void Hitted();
 }
