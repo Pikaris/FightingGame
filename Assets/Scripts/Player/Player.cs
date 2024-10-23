@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IHitable
     readonly int Back_Hash = Animator.StringToHash("Back");
     readonly int LKick_Hash = Animator.StringToHash("L_Kick");
     readonly int Hitted_Hash = Animator.StringToHash("Hitted");
-    
+
     const float Animator_Stop = 0.0f;
     const float Animator_Walk = 1.0f;
     const float Animator_Run = 1.8f;
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour, IHitable
     }
     private void OnLKick_Animation()
     {
-        animator.SetTrigger(LKick_Hash);
+        animator.SetBool(LKick_Hash, true);
     }
 
     void Hitted_Animation()//Vector3 location, bool isHit = false)
@@ -120,7 +120,12 @@ public class Player : MonoBehaviour, IHitable
         OnOffLKick?.Invoke();
     }
 
-    public void Hitted()
+    private void LKick_Finish()
+    {
+        animator.SetBool(LKick_Hash, false);
+    }
+
+    public void Hitted(Vector3? position)
     {
         Hitted_Animation();
     }

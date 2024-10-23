@@ -10,20 +10,34 @@ public class HitBox : MonoBehaviour
 
     private void Awake()
     {
-        Transform child = effectObj.transform.GetChild(0);
-        hitEffect = GetComponent<HitEffect>();
+        Transform child = effectObj.transform;
+        hitEffect = effectObj.GetComponent<HitEffect>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    IHitable hitable = other.GetComponent<IHitable>();
+    //    if (hitable != null)
+    //    {
+    //        hitable.Hitted(null);
+    //    }
+    //    if (effectObj != null)
+    //    {
+    //        hitEffect.Hitted(other.transform.position);
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        IHitable hitable = other.GetComponent<IHitable>();
+        Debug.Log("CollisionEnter");
+        IHitable hitable = collision.gameObject.GetComponent<IHitable>();
         if (hitable != null)
         {
-            hitable.Hitted();
+            hitable.Hitted(null);
         }
-        if (hitEffect != null)
+        if (effectObj != null)
         {
-            hitEffect.Hitted();
+            hitEffect.Hitted(collision.contacts[0].point);
         }
     }
 }
