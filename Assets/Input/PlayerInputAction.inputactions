@@ -31,6 +31,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LPunch",
+                    "type": "Button",
+                    "id": "aad8dd12-1d4c-4659-be8c-38b8fc7ed82f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MPunch",
+                    "type": "Button",
+                    "id": "fb6745ac-48bb-41dd-ac1e-5808c4a58cec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HPunch",
+                    "type": "Button",
+                    "id": "5340acd2-a2ee-4419-a338-b8be5371219a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -93,7 +120,7 @@
                     "name": "",
                     "id": "3b05a460-621f-46c8-8716-5d1bba5a2f44",
                     "path": "<Keyboard>/rightArrow",
-                    "interactions": "MultiTap(pressPoint=1.401298E-45)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Dash",
@@ -104,7 +131,7 @@
                     "name": "",
                     "id": "392ac866-4cbc-4efe-b423-88f43b839274",
                     "path": "<Keyboard>/leftArrow",
-                    "interactions": "MultiTap(pressPoint=1.401298E-45)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
                     "action": "Dash",
@@ -119,6 +146,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "LKick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "396062a1-7354-437e-a7f4-58fa4dbab089",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "LPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e0b6c38-e6ff-4d75-b467-5a2e34905c0f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "MPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16ae9221-4546-4b6d-8a72-fa8ebe4e0cf9",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "HPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

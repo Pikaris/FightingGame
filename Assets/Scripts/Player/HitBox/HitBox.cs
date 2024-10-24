@@ -33,7 +33,7 @@ public class HitBox : MonoBehaviour
         IHitable hitable = collision.gameObject.GetComponent<IHitable>();
         if (hitable != null)
         {
-            hitable.Hitted(null);
+            hitable.Hitted(collision.contacts[0].point);
         }
         if (effectObj != null)
         {

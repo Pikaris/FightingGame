@@ -61096,14 +61096,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.41666666
-    functionName: LKick_HitBox_On
+    functionName: LKick_Box_On
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
-    functionName: LKick_HitBox_Off
+    functionName: LKick_Box_Off
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

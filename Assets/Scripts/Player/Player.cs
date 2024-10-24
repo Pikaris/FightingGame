@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IHitable
+public class Player : MonoBehaviour
 {
     readonly int Speed_Hash = Animator.StringToHash("Speed");
     readonly int Back_Hash = Animator.StringToHash("Back");
     readonly int LKick_Hash = Animator.StringToHash("L_Kick");
+    readonly int LPunch_Hash = Animator.StringToHash("L_Punch");
+    readonly int MPunch_Hash = Animator.StringToHash("M_Punch");
+    readonly int HPunch_Hash = Animator.StringToHash("H_Punch");
     readonly int Hitted_Hash = Animator.StringToHash("Hitted");
 
     const float Animator_Stop = 0.0f;
@@ -23,8 +26,18 @@ public class Player : MonoBehaviour, IHitable
     HurtBox hurtBox;
 
     public event Action onHitLKick;
-    public event Action OnOnLKick;
-    public event Action OnOffLKick;
+
+    // LKick
+    public event Action onOnHitBox_LKick;
+    public event Action onOffHitBox_LKick;
+    public event Action onOnHurtBox_LKick;
+    public event Action onOffHurtBox_LKick;
+
+    // LPunch
+    public event Action onOnHitBox_LPunch;
+    public event Action onOffHitBox_LPunch;
+    public event Action onOnHurtBox_LPunch;
+    public event Action onOffHurtBox_LPunch;
 
     private void Awake()
     {
@@ -50,6 +63,9 @@ public class Player : MonoBehaviour, IHitable
         playerInput.onInput += OnMove;
         playerInput.onRun += OnRun_Animation;
         playerInput.onLKick += OnLKick_Animation;
+        playerInput.onLPunch += OnLPunch_Animation;
+        playerInput.onMPunch += OnMPunch_Animation;
+        playerInput.onHPunch += OnHPunch_Animation;
     }
 
 
@@ -98,35 +114,96 @@ public class Player : MonoBehaviour, IHitable
         currentSpeed = Animator_Run;
         animator.SetFloat(Speed_Hash, Animator_Run);
     }
+
+    // 공격 애니메이션 ----------------------------------------------------------------------------------------------------
+
     private void OnLKick_Animation()
     {
         animator.SetBool(LKick_Hash, true);
     }
 
-    void Hitted_Animation()//Vector3 location, bool isHit = false)
+    private void OnLPunch_Animation()
     {
-        //if (isHit)
+        animator.SetBool(LPunch_Hash, true);
+    }
+
+    private void OnMPunch_Animation()
+    {
+        animator.SetBool(MPunch_Hash, true);
+    }
+
+    private void OnHPunch_Animation()
+    {
+        animator.SetBool(HPunch_Hash, true);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------
+
+
+
+    public void Hitted_Animation(Vector3 location, bool isHit = false)
+    {
+        if (isHit)
         {
             animator.SetTrigger(Hitted_Hash);
         }
     }
 
-    private void LKick_HitBox_On()
+
+
+
+
+
+    // 히트 박스 관련 함수--------------------------------------------------------------------------------------------
+
+    // LKick
+    private void LKick_Box_On()
     {
-        OnOnLKick?.Invoke();
+        onOnHitBox_LKick?.Invoke();
+        onOnHurtBox_LKick?.Invoke();
     }
-    private void LKick_HitBox_Off()
+    private void LKick_Box_Off()
     {
-        OnOffLKick?.Invoke();
+        onOffHitBox_LKick?.Invoke();
+        onOffHurtBox_LKick?.Invoke();
     }
 
+    // LPunch
+    private void LPunch_Box_On()
+    {
+        onOnHitBox_LPunch?.Invoke();
+        onOnHurtBox_LPunch?.Invoke();
+    }
+    private void LPunch_Box_Off()
+    {
+        onOffHitBox_LPunch?.Invoke();
+        onOffHurtBox_LPunch?.Invoke();
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+    // 애니메이션 종료 함수-------------------------------------------------------------------------------------------------------
     private void LKick_Finish()
     {
         animator.SetBool(LKick_Hash, false);
     }
-
-    public void Hitted(Vector3? position)
+    private void LPunch_Finish()
     {
-        Hitted_Animation();
+        animator.SetBool(LPunch_Hash, false);
+    }
+    private void MPunchFinish()
+    {
+        animator.SetBool(MPunch_Hash, false);
+    }
+    private void HPunch_Finish()
+    {
+        animator.SetBool(HPunch_Hash, false);
     }
 }

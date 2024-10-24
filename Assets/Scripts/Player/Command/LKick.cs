@@ -3,40 +3,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LKick : MonoBehaviour
+public class LKick : CommandBase
 {
-    BoxCollider LKick_boxCollider;
-    BoxCollider LKickBody_boxCollider;
-
-    Player player;
-
-    private void Awake()
+    protected override void Awake()
     {
-        Transform child = transform.GetChild(0);
-        LKick_boxCollider = child.GetComponent<BoxCollider>();
-        LKick_boxCollider.gameObject.SetActive(false);
-
-        child = transform.GetChild(1);
-        LKickBody_boxCollider = child.GetComponent<BoxCollider>();
-
-        player = GetComponentInParent<Player>();
+        base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
-        player.OnOnLKick += OnCollision_LKick;
-        player.OnOffLKick += OffCollision_LKick;
+        player.onOnHitBox_LKick += OnHitBoxCollision;
+        player.onOffHitBox_LKick += OffHitBoxCollision;
+        player.onOnHurtBox_LKick += OnHurtBoxCollision;
+        player.onOffHurtBox_LKick += OffHurtBoxCollision;
     }
 
-    private void OnCollision_LKick()
+    protected override void OnHitBoxCollision()
     {
-        LKick_boxCollider.gameObject.SetActive(true);
+        base.OnHitBoxCollision();
     }
 
-    private void OffCollision_LKick()
+    protected override void OffHitBoxCollision()
     {
-        LKick_boxCollider.gameObject.SetActive(false);
+        base.OffHitBoxCollision();
     }
 
-    
+    protected override void OnHurtBoxCollision()
+    {
+        base.OnHurtBoxCollision();
+    }
+
+    protected override void OffHurtBoxCollision()
+    {
+        base.OffHurtBoxCollision();
+    }
+
+
+
+
+
+
+    //BoxCollider LKick_HitBoxCollider;
+    //BoxCollider LKick_HurtBoxCollider;
+
+    //Player player;
+
+    //private void Awake()
+    //{
+    //    Transform child = transform.GetChild(0);
+    //    LKick_HitBoxCollider = child.GetComponent<BoxCollider>();
+    //    LKick_HitBoxCollider.gameObject.SetActive(false);
+
+    //    child = transform.GetChild(1);
+    //    LKick_HurtBoxCollider = child.GetComponent<BoxCollider>();
+    //    LKick_HurtBoxCollider.gameObject.SetActive(false);
+
+    //    player = GetComponentInParent<Player>();
+    //}
+
+    //private void Start()
+    //{
+    //    player.onOnHitBox_LKick += OnHitBoxCollision_LKick;
+    //    player.onOffHitBox_LKick += OffHitBoxCollision_LKick;
+    //    player.onOnHurtBox_LKick += OnHurtBoxCollision_LKick;
+    //    player.onOffHurtBox_LKick += OffHurtBoxCollision_LKick;
+    //}
+
+    //private void OnHitBoxCollision_LKick()
+    //{
+    //    LKick_HitBoxCollider.gameObject.SetActive(true);
+    //}
+
+    //private void OffHitBoxCollision_LKick()
+    //{
+    //    LKick_HitBoxCollider.gameObject.SetActive(false);
+    //}
+
+    //private void OnHurtBoxCollision_LKick()
+    //{
+    //    LKick_HurtBoxCollider.gameObject.SetActive(true);
+    //}
+
+    //private void OffHurtBoxCollision_LKick()
+    //{
+    //    LKick_HurtBoxCollider.gameObject.SetActive(false);
+    //}
+
+
 }

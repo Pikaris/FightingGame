@@ -53,6 +53,33 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LPunch"",
+                    ""type"": ""Button"",
+                    ""id"": ""aad8dd12-1d4c-4659-be8c-38b8fc7ed82f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MPunch"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb6745ac-48bb-41dd-ac1e-5808c4a58cec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HPunch"",
+                    ""type"": ""Button"",
+                    ""id"": ""5340acd2-a2ee-4419-a338-b8be5371219a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -115,7 +142,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""3b05a460-621f-46c8-8716-5d1bba5a2f44"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": ""MultiTap(pressPoint=1.401298E-45)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Dash"",
@@ -126,7 +153,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""392ac866-4cbc-4efe-b423-88f43b839274"",
                     ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": ""MultiTap(pressPoint=1.401298E-45)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyBoard"",
                     ""action"": ""Dash"",
@@ -141,6 +168,39 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LKick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""396062a1-7354-437e-a7f4-58fa4dbab089"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""LPunch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e0b6c38-e6ff-4d75-b467-5a2e34905c0f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""MPunch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16ae9221-4546-4b6d-8a72-fa8ebe4e0cf9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""HPunch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -166,6 +226,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LKick = m_Player.FindAction("LKick", throwIfNotFound: true);
+        m_Player_LPunch = m_Player.FindAction("LPunch", throwIfNotFound: true);
+        m_Player_MPunch = m_Player.FindAction("MPunch", throwIfNotFound: true);
+        m_Player_HPunch = m_Player.FindAction("HPunch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -230,6 +293,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LKick;
+    private readonly InputAction m_Player_LPunch;
+    private readonly InputAction m_Player_MPunch;
+    private readonly InputAction m_Player_HPunch;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -237,6 +303,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LKick => m_Wrapper.m_Player_LKick;
+        public InputAction @LPunch => m_Wrapper.m_Player_LPunch;
+        public InputAction @MPunch => m_Wrapper.m_Player_MPunch;
+        public InputAction @HPunch => m_Wrapper.m_Player_HPunch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -255,6 +324,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @LKick.started += instance.OnLKick;
             @LKick.performed += instance.OnLKick;
             @LKick.canceled += instance.OnLKick;
+            @LPunch.started += instance.OnLPunch;
+            @LPunch.performed += instance.OnLPunch;
+            @LPunch.canceled += instance.OnLPunch;
+            @MPunch.started += instance.OnMPunch;
+            @MPunch.performed += instance.OnMPunch;
+            @MPunch.canceled += instance.OnMPunch;
+            @HPunch.started += instance.OnHPunch;
+            @HPunch.performed += instance.OnHPunch;
+            @HPunch.canceled += instance.OnHPunch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -268,6 +346,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @LKick.started -= instance.OnLKick;
             @LKick.performed -= instance.OnLKick;
             @LKick.canceled -= instance.OnLKick;
+            @LPunch.started -= instance.OnLPunch;
+            @LPunch.performed -= instance.OnLPunch;
+            @LPunch.canceled -= instance.OnLPunch;
+            @MPunch.started -= instance.OnMPunch;
+            @MPunch.performed -= instance.OnMPunch;
+            @MPunch.canceled -= instance.OnMPunch;
+            @HPunch.started -= instance.OnHPunch;
+            @HPunch.performed -= instance.OnHPunch;
+            @HPunch.canceled -= instance.OnHPunch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -299,5 +386,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLKick(InputAction.CallbackContext context);
+        void OnLPunch(InputAction.CallbackContext context);
+        void OnMPunch(InputAction.CallbackContext context);
+        void OnHPunch(InputAction.CallbackContext context);
     }
 }

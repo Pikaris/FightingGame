@@ -5,17 +5,49 @@ using UnityEngine;
 
 public class CommandBase : MonoBehaviour
 {
-    public GameObject LKick;
+    BoxCollider HitBoxCollider;
+    BoxCollider HurtBoxCollider;
 
-    HitBox hitBox;
-    HurtBox hurtBox;
+    Player player;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        Transform child = LKick.transform.GetChild(0);
-        hitBox = child.GetComponent<HitBox>();
+        Transform child = transform.GetChild(0);
+        HitBoxCollider = child.GetComponent<BoxCollider>();
+        HitBoxCollider.gameObject.SetActive(false);
 
-        child = LKick.transform.GetChild(1);
-        hurtBox = child.GetComponent<HurtBox>();
+        child = transform.GetChild(1);
+        HurtBoxCollider = child.GetComponent<BoxCollider>();
+        HurtBoxCollider.gameObject.SetActive(false);
+
+        player = GetComponentInParent<Player>();
+    }
+
+    protected virtual void Start()
+    {
+        player.onOnHitBox_LKick += OnHitBoxCollision;
+        player.onOffHitBox_LKick += OffHitBoxCollision;
+        player.onOnHurtBox_LKick += OnHurtBoxCollision;
+        player.onOffHurtBox_LKick += OffHurtBoxCollision;
+    }
+
+    protected virtual void OnHitBoxCollision()
+    {
+        HitBoxCollider.gameObject.SetActive(true);
+    }
+
+    protected virtual void OffHitBoxCollision()
+    {
+        HitBoxCollider.gameObject.SetActive(false);
+    }
+
+    protected virtual void OnHurtBoxCollision()
+    {
+        HurtBoxCollider.gameObject.SetActive(true);
+    }
+
+    protected virtual void OffHurtBoxCollision()
+    {
+        HurtBoxCollider.gameObject.SetActive(false);
     }
 }
