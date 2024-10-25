@@ -10,6 +10,8 @@ public class CommandBase : MonoBehaviour
 
     Player player;
 
+    public Player PlayerProp => player;
+
     protected virtual void Awake()
     {
         Transform child = transform.GetChild(0);

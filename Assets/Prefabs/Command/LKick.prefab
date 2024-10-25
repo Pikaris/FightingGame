@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7121841361285669638}
   - component: {fileID: 5749104167936918219}
   - component: {fileID: 7889692605600987157}
-  - component: {fileID: 7267658873054970567}
+  - component: {fileID: 2816581138019726017}
   m_Layer: 6
-  m_Name: LKickCollider
+  m_Name: HitBox
   m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072850475163941646}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 878836169956252595}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5749104167936918219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e87137e470ecb45bf3d7c1886d8415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObj: {fileID: 0}
 --- !u!65 &7889692605600987157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59,35 +60,41 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.15, z: 0.5}
-  m_Center: {x: 1.36, y: 0, z: 0.63}
---- !u!65 &7267658873054970567
-BoxCollider:
+  m_Size: {x: 0.01, y: 0.2, z: 0.4}
+  m_Center: {x: 0, y: 1.05, z: 0.4}
+--- !u!54 &2816581138019726017
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072850475163941646}
-  m_Material: {fileID: 0}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.15, z: 0.3}
-  m_Center: {x: 1.19, y: 0, z: 0.4}
+    m_Bits: 64
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2162203012885625107
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878836169956252595}
-  - component: {fileID: 8505142812572090448}
+  - component: {fileID: 8522979464285191742}
   m_Layer: 6
   m_Name: LKick
   m_TagString: Untagged
@@ -113,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2162203012885625107}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -122,7 +129,7 @@ Transform:
   - {fileID: 2481121922016445758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8505142812572090448
+--- !u!114 &8522979464285191742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2162203012885625107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4aa17e9eabc8534192dac2a1521215f, type: 3}
+  m_Script: {fileID: 11500000, guid: 75b2db6e232803645a6eed7d26835eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4449648874081873566
@@ -146,8 +153,9 @@ GameObject:
   - component: {fileID: 5979915957688480462}
   - component: {fileID: 4660216151673431624}
   - component: {fileID: 7436801611955429168}
+  - component: {fileID: 1085996537627699402}
   m_Layer: 6
-  m_Name: BodyCollider
+  m_Name: HurtBox
   m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 4449648874081873566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.476, z: 0}
+  m_LocalPosition: {x: 0, y: 0.499, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,7 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8613f2949d2ba42a214e55283614c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandObj: {fileID: 0}
 --- !u!65 &4660216151673431624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -194,14 +201,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 1, z: 0.6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.015, y: 1, z: 0.6}
+  m_Center: {x: 0, y: 0, z: -0.11}
 --- !u!65 &7436801611955429168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -215,11 +222,38 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.3, z: 0.3}
-  m_Center: {x: 0, y: 0.61, z: 0}
+  m_Size: {x: 0.015, y: 0.4, z: 0.5}
+  m_Center: {x: 0, y: 0.64, z: -0.06}
+--- !u!54 &1085996537627699402
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449648874081873566}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

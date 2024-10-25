@@ -12,10 +12,11 @@ public class LKick : CommandBase
 
     protected override void Start()
     {
-        player.onOnHitBox_LKick += OnHitBoxCollision;
-        player.onOffHitBox_LKick += OffHitBoxCollision;
-        player.onOnHurtBox_LKick += OnHurtBoxCollision;
-        player.onOffHurtBox_LKick += OffHurtBoxCollision;
+        base.Start();
+        PlayerProp.onOnHitBox_LKick += OnHitBoxCollision;
+        PlayerProp.onOffHitBox_LKick += OffHitBoxCollision;
+        PlayerProp.onOnHurtBox_LKick += OnHurtBoxCollision;
+        PlayerProp.onOffHurtBox_LKick += OffHurtBoxCollision;
     }
 
     protected override void OnHitBoxCollision()

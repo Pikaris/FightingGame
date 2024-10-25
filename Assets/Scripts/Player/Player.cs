@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class Player : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
     const float Animator_Walk = 1.0f;
     const float Animator_Run = 1.8f;
 
+    float walkSpeed = 1.0f;
     float currentSpeed = 0.0f;
     Vector3 direction = Vector3.zero;
 
@@ -39,6 +42,18 @@ public class Player : MonoBehaviour
     public event Action onOnHurtBox_LPunch;
     public event Action onOffHurtBox_LPunch;
 
+    // MPunch
+    public event Action onOnHitBox_MPunch;
+    public event Action onOffHitBox_MPunch;
+    public event Action onOnHurtBox_MPunch;
+    public event Action onOffHurtBox_MPunch;
+
+    // HPunch
+    public event Action onOnHitBox_HPunch;
+    public event Action onOffHitBox_HPunch;
+    public event Action onOnHurtBox_HPunch;
+    public event Action onOffHurtBox_HPunch;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -50,7 +65,6 @@ public class Player : MonoBehaviour
         child = child.GetChild(1);
         hurtBox = child.GetComponent<HurtBox>();
 
-
     }
 
     private void Start()
@@ -60,8 +74,9 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput.onInput += OnMove;
-        playerInput.onRun += OnRun_Animation;
+        playerInput.onDown += OnDown;
+        playerInput.onLeft += OnLeft;
+        playerInput.onRight += OnRight;
         playerInput.onLKick += OnLKick_Animation;
         playerInput.onLPunch += OnLPunch_Animation;
         playerInput.onMPunch += OnMPunch_Animation;
@@ -84,28 +99,73 @@ public class Player : MonoBehaviour
     }
 
 
-    private void OnMove(Vector2 input, bool isPress)
+    //private void OnMove(bool isPress)
+    //{
+    //    if (isPress)
+    //    {
+    //        currentSpeed = Animator_Walk;
+    //        direction.z = input.x;
+    //        animator.SetFloat(Speed_Hash, Animator_Walk);
+    //        animator.ResetTrigger(LKick_Hash);
+    //        if (direction.z < 0.0f)
+    //        {
+    //            animator.SetBool(Back_Hash, true);
+    //        }
+    //        else
+    //        {
+    //            animator.SetBool(Back_Hash, false);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        currentSpeed = Animator_Stop;
+    //        direction = Vector3.zero;
+    //        animator.SetFloat(Speed_Hash, Animator_Stop);
+    //    }
+    //}
+
+
+
+
+
+
+
+    private void OnDown(bool isPress)
+    {
+        
+    }
+
+    private void OnLeft(bool isPress)
     {
         if (isPress)
         {
             currentSpeed = Animator_Walk;
-            direction.z = input.x;
+            direction.z = -currentSpeed;
             animator.SetFloat(Speed_Hash, Animator_Walk);
-            animator.ResetTrigger(LKick_Hash);
-            if (direction.z < 0.0f)
-            {
-                animator.SetBool(Back_Hash, true);
-            }
-            else
-            {
-                animator.SetBool(Back_Hash, false);
-            }
+            //animator.ResetTrigger(LKick_Hash);
+            TurnBack();
         }
         else
         {
-            currentSpeed = Animator_Stop;
-            direction = Vector3.zero;
-            animator.SetFloat(Speed_Hash, Animator_Stop);
+            currentSpeed = 0.0f;
+            animator.SetFloat(Speed_Hash, currentSpeed);
+        }
+    }
+
+    private void OnRight(bool isPress)
+    {
+        if (isPress)
+        {
+            currentSpeed = Animator_Walk;
+            direction.z = currentSpeed;
+            animator.SetFloat(Speed_Hash, Animator_Walk);
+            //animator.ResetTrigger(LKick_Hash);
+            TurnBack();
+        }
+        else
+        {
+            currentSpeed = 0.0f;
+            animator.SetFloat(Speed_Hash, currentSpeed);
         }
     }
 
@@ -179,6 +239,30 @@ public class Player : MonoBehaviour
         onOffHitBox_LPunch?.Invoke();
         onOffHurtBox_LPunch?.Invoke();
     }
+
+    // MPunch
+    private void MPunch_Box_On()
+    {
+        onOnHitBox_MPunch?.Invoke();
+        onOnHurtBox_MPunch?.Invoke();
+    }
+    private void MPunch_Box_Off()
+    {
+        onOffHitBox_MPunch?.Invoke();
+        onOffHurtBox_MPunch?.Invoke();
+    }
+
+    // HPunch
+    private void HPunch_Box_On()
+    {
+        onOnHitBox_HPunch?.Invoke();
+        onOnHurtBox_HPunch?.Invoke();
+    }
+    private void HPunch_Box_Off()
+    {
+        onOffHitBox_HPunch?.Invoke();
+        onOffHurtBox_HPunch?.Invoke();
+    }
     //-------------------------------------------------------------------------------------------------------------------
 
 
@@ -205,5 +289,18 @@ public class Player : MonoBehaviour
     private void HPunch_Finish()
     {
         animator.SetBool(HPunch_Hash, false);
+    }
+
+
+    private void TurnBack()
+    {
+        if (direction.z < 0.0f)
+        {
+            animator.SetBool(Back_Hash, true);
+        }
+        else
+        {
+            animator.SetBool(Back_Hash, false);
+        }
     }
 }

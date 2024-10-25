@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LPunch : CommandBase
+public class HPunch : CommandBase
 {
     protected override void Awake()
     {
@@ -11,10 +11,10 @@ public class LPunch : CommandBase
 
     protected override void Start()
     {
-        PlayerProp.onOnHitBox_LPunch += OnHitBoxCollision;
-        PlayerProp.onOffHitBox_LPunch += OffHitBoxCollision;
-        PlayerProp.onOnHurtBox_LPunch += OnHurtBoxCollision;
-        PlayerProp.onOffHurtBox_LPunch += OffHurtBoxCollision;
+        PlayerProp.onOnHitBox_HPunch += OnHitBoxCollision;
+        PlayerProp.onOffHitBox_HPunch += OffHitBoxCollision;
+        PlayerProp.onOnHurtBox_HPunch += OnHurtBoxCollision;
+        PlayerProp.onOffHurtBox_HPunch += OffHurtBoxCollision;
     }
 
     protected override void OnHitBoxCollision()
@@ -36,5 +36,4 @@ public class LPunch : CommandBase
     {
         base.OffHurtBoxCollision();
     }
-
 }
